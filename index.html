@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>FAANG Prep Tracker</title>
+  <meta name="description" content="Daily SQL & Python study tracker, synced to GitHub.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="top">
+    <div>
+      <h1 id="title">FAANG Data Prep</h1>
+      <p class="sub">1 hour a day · Monday–Friday</p>
+    </div>
+    <div class="top-actions">
+      <span id="sync" class="pill" title="Sync status">Loading…</span>
+      <button id="settingsBtn" class="btn" aria-label="Settings">⚙︎ Sync</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="stats" id="stats"></section>
+
+    <section class="card">
+      <div class="card-head">
+        <h2>Contributions</h2>
+        <span class="legend">Less <i class="l0"></i><i class="l1"></i><i class="l2"></i><i class="l3"></i><i class="l4"></i> More</span>
+      </div>
+      <div class="heat-wrap"><div id="heat" class="heat"></div></div>
+    </section>
+
+    <section id="todayCard"></section>
+
+    <section class="card">
+      <div class="card-head">
+        <h2>All sessions</h2>
+        <div class="tabs" id="tabs" role="tablist"></div>
+      </div>
+      <div id="list"></div>
+    </section>
+
+    <footer>
+      <button id="exportBtn" class="btn ghost">Export JSON</button>
+      <span id="lastUpdated"></span>
+    </footer>
+  </main>
+
+  <dialog id="settings">
+    <form method="dialog" id="settingsForm">
+      <h2>GitHub sync</h2>
+      <p class="muted">Progress is stored in <code>progress.json</code> in your repo, so every device sees the same data. Reading works without a token; to <b>save</b> from this device, paste a token once.</p>
+      <label>Owner <input id="sOwner" autocomplete="off" required></label>
+      <label>Repository <input id="sRepo" autocomplete="off" required></label>
+      <label>Branch <input id="sBranch" autocomplete="off" value="main" required></label>
+      <label>Token <input id="sToken" type="password" autocomplete="off" placeholder="github_pat_…"></label>
+      <details class="muted">
+        <summary>How to create a safe token</summary>
+        <ol>
+          <li>Open <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">github.com → Fine-grained tokens → Generate</a>.</li>
+          <li>Repository access: <b>Only select repositories</b> → pick this repo only.</li>
+          <li>Permissions → Repository → <b>Contents: Read and write</b>. Nothing else.</li>
+          <li>Paste it here. It is saved only in this browser on this device.</li>
+        </ol>
+      </details>
+      <p id="sMsg" class="muted"></p>
+      <div class="row">
+        <button type="button" id="sForget" class="btn ghost">Forget token</button>
+        <span class="spacer"></span>
+        <button value="cancel" class="btn ghost" formnovalidate>Cancel</button>
+        <button id="sSave" value="save" class="btn primary">Save & sync</button>
+      </div>
+    </form>
+  </dialog>
+
+  <script src="app.js"></script>
+</body>
+</html>
