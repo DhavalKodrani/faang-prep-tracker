@@ -47,15 +47,32 @@
   const todayKey = () => keyOf(new Date());
   const fmt = (k, opts = { weekday: 'short', month: 'short', day: 'numeric' }) => parseKey(k).toLocaleDateString(undefined, opts);
 
+  const isOffDay = (d) => d.getDay() === 0 || d.getDay() === 6 || (plan.skipDates || []).includes(keyOf(d));
+
+  // Dates come from plan.startDate, unless a restart saved its own schedule in progress.json.
   function buildSessions() {
-    const skip = new Set(plan.skipDates || []);
+    const custom = (progress.schedule && progress.schedule.dates) || {};
     const d = parseKey(plan.startDate);
     sessions = plan.days.map((day, i) => {
-      while (d.getDay() === 0 || d.getDay() === 6 || skip.has(keyOf(d))) d.setDate(d.getDate() + 1);
-      const s = Object.assign({ n: i + 1, date: keyOf(d) }, day);
+      while (isOffDay(d)) d.setDate(d.getDate() + 1);
+      const s = Object.assign({ n: i + 1, date: custom[i + 1] || keyOf(d) }, day);
       d.setDate(d.getDate() + 1);
       return s;
     });
+  }
+
+  // Lay out the given sessions on weekdays from today, skipping dates already taken by `keep`.
+  function scheduleFromToday(toMove, keep = []) {
+    const dates = {};
+    const taken = new Set(keep.map((s) => s.date));
+    keep.forEach((s) => { dates[s.n] = s.date; });
+    const d = parseKey(todayKey());
+    for (const s of toMove) {
+      while (isOffDay(d) || taken.has(keyOf(d))) d.setDate(d.getDate() + 1);
+      dates[s.n] = keyOf(d);
+      d.setDate(d.getDate() + 1);
+    }
+    return dates;
   }
 
   const doneCount = (s) => dayState(s.n).tasks.filter(Boolean).length;
@@ -139,7 +156,7 @@
     if (!s) {
       s = sessions.find((x) => x.date > t && !isDone(x));
       if (!s) { $('#todayCard').innerHTML = sessions.every(isDone) ? '<div class="card"><div class="kicker">All done</div><h2>Program complete — go apply! 🚀</h2></div>' : ''; return; }
-      kicker = t < plan.startDate ? `Starts ${fmt(s.date, { weekday: 'long', month: 'long', day: 'numeric' })}` : `Rest day · next up ${fmt(s.date)}`;
+      kicker = t < sessions[0].date ? `Starts ${fmt(s.date, { weekday: 'long', month: 'long', day: 'numeric' })}` : `Rest day · next up ${fmt(s.date)}`;
     }
     const phase = plan.phases.find((p) => p.id === s.phase);
     $('#todayCard').innerHTML = `<div class="card">
@@ -174,6 +191,7 @@
   }
 
   function renderAll() {
+    buildSessions();
     renderStats(); renderHeat(); renderToday(); renderTabs(); renderList();
     $('#lastUpdated').textContent = progress.lastUpdated ? `Last update ${new Date(progress.lastUpdated).toLocaleString()}` : '';
   }
@@ -199,6 +217,35 @@
     store.set(LS.data, progress);
     store.set(LS.dirty, true);
     schedulePush();
+  }
+
+  function markChanged(msg) {
+    progress.lastUpdated = new Date().toISOString();
+    lastChange = msg;
+    dirty = true;
+    store.set(LS.data, progress);
+    store.set(LS.dirty, true);
+    schedulePush();
+  }
+
+  function restart(eraseAll) {
+    const now = new Date().toISOString();
+    if (eraseAll) {
+      progress.days = {};
+      progress.resetAt = now;
+      progress.schedule = { dates: scheduleFromToday(sessions), updatedAt: now };
+      markChanged(`Reset: erased progress, Day 1 starts ${todayKey()}`);
+    } else {
+      const done = sessions.filter(isDone);
+      const todo = sessions.filter((s) => !isDone(s));
+      progress.schedule = { dates: scheduleFromToday(todo, done), updatedAt: now };
+      markChanged(`Restart: ${todo.length} unfinished sessions rescheduled from ${todayKey()}`);
+    }
+    buildSessions();
+    const cur = sessions.find((s) => s.date === todayKey());
+    openDays.clear();
+    if (cur) { openDays.add(cur.n); tab = cur.phase; store.set(LS.tab, tab); }
+    renderAll();
   }
 
   // ---------- GitHub sync ----------
@@ -227,13 +274,20 @@
   }
 
   // Per-day last-writer-wins, so edits made on two devices don't clobber each other.
+  // An "erase everything" (resetAt) drops any day last edited before it, on either side.
   function merge(a, b) {
     const out = emptyProgress();
+    const resetAt = [a.resetAt, b.resetAt].filter(Boolean).sort().pop();
+    if (resetAt) out.resetAt = resetAt;
     const keys = new Set([...Object.keys(a.days || {}), ...Object.keys(b.days || {})]);
     for (const k of keys) {
       const x = (a.days || {})[k], y = (b.days || {})[k];
-      out.days[k] = !x ? y : !y ? x : ((x.updatedAt || '') >= (y.updatedAt || '') ? x : y);
+      const day = !x ? y : !y ? x : ((x.updatedAt || '') >= (y.updatedAt || '') ? x : y);
+      if (!resetAt || (day.updatedAt || '') >= resetAt) out.days[k] = day;
     }
+    const sa = a.schedule, sb = b.schedule;
+    const sched = !sa ? sb : !sb ? sa : ((sa.updatedAt || '') >= (sb.updatedAt || '') ? sa : sb);
+    if (sched) out.schedule = sched;
     out.lastUpdated = [a.lastUpdated, b.lastUpdated].filter(Boolean).sort().pop() || null;
     return out;
   }
@@ -354,6 +408,20 @@
     const a = Object.assign(document.createElement('a'), { href: URL.createObjectURL(blob), download: `faang-progress-${todayKey()}.json` });
     a.click();
     setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+  });
+
+  // reset dialog
+  const resetDlg = $('#reset');
+  $('#resetBtn').addEventListener('click', () => {
+    const todo = sessions.filter((s) => !isDone(s)).length;
+    const behind = sessions.filter((s) => s.date < todayKey() && !isDone(s)).length;
+    $('#rSummary').textContent = `${sessions.length - todo} of ${sessions.length} sessions done, ${todo} left${behind ? `, ${behind} overdue` : ''}.`;
+    resetDlg.showModal();
+  });
+  $('#resetForm').addEventListener('submit', (e) => {
+    const v = e.submitter && e.submitter.value;
+    if (v === 'erase' && !confirm('Erase ALL ticks, notes and confidence ratings? This cannot be undone from the site.')) { e.preventDefault(); return; }
+    if (v === 'restart' || v === 'erase') restart(v === 'erase');
   });
 
   // settings dialog

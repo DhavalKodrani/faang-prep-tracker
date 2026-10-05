@@ -6,6 +6,8 @@ in this repo, so it stays in sync on your laptop, iPad and phone.
 
 - **Schedule:** Mon Sep 28, 2026 → Tue Dec 8, 2026 (weekends and Thanksgiving skipped)
 - **Phases:** SQL Mastery (10) · Python Basics (10) · Python Extended (30)
+- Fell behind? **↺ Reset / restart** (bottom of the page) moves every unfinished session to weekdays
+  starting today and keeps what you've already ticked — or erases everything and starts Day 1 today.
 - Every save is a commit, so studying also fills your GitHub contribution graph.
 
 ## Set up on each device (once)

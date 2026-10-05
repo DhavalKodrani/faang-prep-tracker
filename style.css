@@ -146,3 +146,6 @@ dialog details { margin-top: 12px; }
 dialog ol { padding-left: 18px; }
 .row { display: flex; gap: 8px; align-items: center; margin-top: 16px; flex-wrap: wrap; }
 .spacer { flex: 1; }
+.btn.danger { color: var(--danger); border-color: var(--danger); background: transparent; }
+.choice { border: 1px solid var(--border); border-radius: 8px; padding: 12px; margin-top: 12px; }
+.choice p { margin: 4px 0 10px; }

@@ -41,10 +41,31 @@
     </section>
 
     <footer>
-      <button id="exportBtn" class="btn ghost">Export JSON</button>
+      <span class="row" style="margin:0">
+        <button id="resetBtn" class="btn ghost">↺ Reset / restart</button>
+        <button id="exportBtn" class="btn ghost">Export JSON</button>
+      </span>
       <span id="lastUpdated"></span>
     </footer>
   </main>
+
+  <dialog id="reset">
+    <form method="dialog" id="resetForm">
+      <h2>Reset progress</h2>
+      <p id="rSummary" class="muted"></p>
+      <div class="choice">
+        <b>Restart from today</b>
+        <p class="muted">Keeps everything you've ticked. All unfinished sessions (including missed days) move to weekdays starting today.</p>
+        <button value="restart" class="btn primary">Restart from today</button>
+      </div>
+      <div class="choice">
+        <b>Erase everything</b>
+        <p class="muted">Clears all ticks, notes and confidence ratings and starts Day 1 today.</p>
+        <button value="erase" class="btn danger">Erase &amp; start over</button>
+      </div>
+      <div class="row"><span class="spacer"></span><button value="cancel" class="btn ghost">Cancel</button></div>
+    </form>
+  </dialog>
 
   <dialog id="settings">
     <form method="dialog" id="settingsForm">
