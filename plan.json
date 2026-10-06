@@ -1,169 +1,1348 @@
 {
   "title": "FAANG Data Prep",
   "startDate": "2026-09-28",
-  "skipDates": ["2026-11-26", "2026-11-27"],
+  "skipDates": [
+    "2026-11-26",
+    "2026-11-27"
+  ],
   "phases": [
-    { "id": "sql", "name": "SQL Mastery" },
-    { "id": "py", "name": "Python Basics" },
-    { "id": "pyx", "name": "Python Extended" }
+    {
+      "id": "sql",
+      "name": "SQL Mastery"
+    },
+    {
+      "id": "py",
+      "name": "Python Basics"
+    },
+    {
+      "id": "pyx",
+      "name": "Python Extended"
+    }
   ],
   "days": [
-    { "phase": "sql", "title": "SELECT fundamentals & filtering",
-      "tasks": ["Learn: SELECT, WHERE, AND/OR, IN, BETWEEN, LIKE", "Learn: NULL handling (IS NULL, COALESCE), ORDER BY, LIMIT, DISTINCT", "Practice: solve 3 easy problems", "Write 3 takeaways in notes"],
-      "links": [["Mode SQL basics", "https://mode.com/sql-tutorial/introduction-to-sql"], ["LC 1757", "https://leetcode.com/problems/recyclable-and-low-fat-products/"], ["LC 584", "https://leetcode.com/problems/find-customer-referee/"], ["LC 595", "https://leetcode.com/problems/big-countries/"]] },
-    { "phase": "sql", "title": "Aggregations, GROUP BY, HAVING, CASE",
-      "tasks": ["Learn: COUNT/SUM/AVG/MIN/MAX, COUNT(DISTINCT)", "Learn: GROUP BY vs HAVING, CASE WHEN inside aggregates", "Practice: solve 3 problems", "Write 3 takeaways in notes"],
-      "links": [["Mode aggregates", "https://mode.com/sql-tutorial/sql-aggregate-functions"], ["LC 1741", "https://leetcode.com/problems/find-total-time-spent-by-each-employee/"], ["LC 1693", "https://leetcode.com/problems/daily-leads-and-partners/"], ["LC 596", "https://leetcode.com/problems/classes-more-than-5-students/"]] },
-    { "phase": "sql", "title": "JOINs: inner, left, self, anti",
-      "tasks": ["Learn: INNER vs LEFT vs FULL joins, join cardinality", "Learn: self joins and anti joins (LEFT JOIN … IS NULL / NOT EXISTS)", "Practice: solve 3 problems", "Write 3 takeaways in notes"],
-      "links": [["Mode joins", "https://mode.com/sql-tutorial/sql-joins"], ["LC 175", "https://leetcode.com/problems/combine-two-tables/"], ["LC 181", "https://leetcode.com/problems/employees-earning-more-than-their-managers/"], ["LC 183", "https://leetcode.com/problems/customers-who-never-order/"]] },
-    { "phase": "sql", "title": "Subqueries & CTEs",
-      "tasks": ["Learn: scalar, correlated and IN/EXISTS subqueries", "Learn: WITH (CTEs), chaining CTEs, recursive CTE basics", "Practice: solve 3 medium problems", "Write 3 takeaways in notes"],
-      "links": [["Mode subqueries", "https://mode.com/sql-tutorial/sql-sub-queries"], ["LC 176", "https://leetcode.com/problems/second-highest-salary/"], ["LC 184", "https://leetcode.com/problems/department-highest-salary/"], ["LC 570", "https://leetcode.com/problems/managers-with-at-least-5-direct-reports/"]] },
-    { "phase": "sql", "title": "Window functions I: ranking",
-      "tasks": ["Learn: OVER, PARTITION BY, ORDER BY in windows", "Learn: ROW_NUMBER vs RANK vs DENSE_RANK, top-N per group", "Practice: solve 2 problems (one hard)", "Weekly review: re-solve one problem from Day 1–4 without notes"],
-      "links": [["Mode window functions", "https://mode.com/sql-tutorial/sql-window-functions"], ["LC 178", "https://leetcode.com/problems/rank-scores/"], ["LC 185", "https://leetcode.com/problems/department-top-three-salaries/"]] },
-    { "phase": "sql", "title": "Window functions II: LAG/LEAD & running totals",
-      "tasks": ["Learn: LAG/LEAD, day-over-day change", "Learn: running totals and moving averages (ROWS BETWEEN)", "Practice: solve 3 problems", "Write 3 takeaways in notes"],
-      "links": [["LC 180", "https://leetcode.com/problems/consecutive-numbers/"], ["LC 197", "https://leetcode.com/problems/rising-temperature/"], ["LC 1321", "https://leetcode.com/problems/restaurant-growth/"]] },
-    { "phase": "sql", "title": "Dates, strings, retention & cohorts",
-      "tasks": ["Learn: date functions (DATE_TRUNC, DATEDIFF, intervals), string functions", "Learn: retention / cohort query pattern (first-activity date + self join)", "Practice: solve 2 problems", "Write 3 takeaways in notes"],
-      "links": [["LC 550", "https://leetcode.com/problems/game-play-analysis-iv/"], ["LC 1141", "https://leetcode.com/problems/user-activity-for-the-past-30-days-i/"], ["DataLemur SQL questions", "https://datalemur.com/questions?category=SQL"]] },
-    { "phase": "sql", "title": "Query optimization",
-      "tasks": ["Learn: how indexes work (B-tree), when they are / aren't used", "Learn: read an EXPLAIN plan; filter early, avoid SELECT *, sargable predicates", "Practice: rewrite 2 of your earlier solutions to be faster / cleaner", "Write 3 takeaways in notes"],
-      "links": [["Use The Index, Luke", "https://use-the-index-luke.com/"], ["Mode performance tuning", "https://mode.com/sql-tutorial/sql-performance-tuning"]] },
-    { "phase": "sql", "title": "Data modeling: star schema & SCDs",
-      "tasks": ["Learn: facts vs dimensions, star vs snowflake, grain", "Learn: normalization (1NF–3NF) and SCD Type 1 vs Type 2", "Practice: design a star schema for an e-commerce store (orders, customers, products)", "Write 3 takeaways in notes"],
-      "links": [["Kimball techniques", "https://www.kimballgroup.com/data-warehouse-business-intelligence-resources/kimball-techniques/dimensional-modeling-techniques/"]] },
-    { "phase": "sql", "title": "SQL interview patterns + timed mock",
-      "tasks": ["Review: top-N per group, gaps & islands, funnels, dedup with ROW_NUMBER", "Mock: 3 FAANG problems, 15 min each, timed", "Weekly review: list weak spots to revisit", "Rate SQL confidence (goal 8/10)"],
-      "links": [["DataLemur FAANG SQL", "https://datalemur.com/questions?category=SQL"], ["LeetCode SQL 50", "https://leetcode.com/studyplan/top-sql-50/"]] },
-
-    { "phase": "py", "title": "Python fundamentals: types & collections",
-      "tasks": ["Learn: ints/floats/strings, f-strings, slicing", "Learn: lists, tuples, dicts, sets and comprehensions", "Code: 5 small exercises in Colab", "Write 3 takeaways in notes"],
-      "links": [["Google Colab", "https://colab.research.google.com/"], ["HackerRank Python", "https://www.hackerrank.com/domains/python"]] },
-    { "phase": "py", "title": "Control flow, functions, errors",
-      "tasks": ["Learn: if/for/while, enumerate, zip", "Learn: functions, default args, *args/**kwargs, lambda", "Learn: try/except/finally, raising errors", "Code: 5 exercises in Colab"],
-      "links": [["Python tutorial: control flow", "https://docs.python.org/3/tutorial/controlflow.html"]] },
-    { "phase": "py", "title": "Interview-style problem solving",
-      "tasks": ["Learn: hashing with dict/Counter/defaultdict", "Learn: two pointers, sorting with key=, sliding window", "Practice: solve 3 easy LeetCode array/string problems", "Write 3 takeaways in notes"],
-      "links": [["LC 1 Two Sum", "https://leetcode.com/problems/two-sum/"], ["LC 242 Valid Anagram", "https://leetcode.com/problems/valid-anagram/"], ["LC 347 Top K Frequent", "https://leetcode.com/problems/top-k-frequent-elements/"]] },
-    { "phase": "py", "title": "Files, JSON/CSV, modules, classes",
-      "tasks": ["Learn: reading/writing files, csv and json modules", "Learn: imports, modules, virtual envs (concept)", "Learn: classes and @dataclass", "Code: parse a JSON file into a list of dataclasses"],
-      "links": [["Python tutorial: classes", "https://docs.python.org/3/tutorial/classes.html"]] },
-    { "phase": "py", "title": "NumPy I: arrays & broadcasting",
-      "tasks": ["Learn: ndarray, dtypes, shape, reshape", "Learn: indexing, boolean masks, broadcasting", "Code: 10 NumPy exercises in Colab", "Weekly review: re-do one Python problem from this week"],
-      "links": [["NumPy absolute beginners", "https://numpy.org/doc/stable/user/absolute_beginners.html"]] },
-    { "phase": "py", "title": "NumPy II: vectorization & aggregation",
-      "tasks": ["Learn: vectorized ops vs loops (time both)", "Learn: sum/mean/std along axes, argsort, where", "Learn: np.random and basic linear algebra", "Code: 10 NumPy exercises in Colab"],
-      "links": [["NumPy user guide", "https://numpy.org/doc/stable/user/index.html"]] },
-    { "phase": "py", "title": "Pandas I: DataFrames, selecting, filtering",
-      "tasks": ["Learn: Series vs DataFrame, read_csv, head/info/describe", "Learn: loc vs iloc, boolean filtering, sort_values", "Code: load a Kaggle dataset and answer 5 questions", "Write 3 takeaways in notes"],
-      "links": [["Kaggle Pandas course", "https://www.kaggle.com/learn/pandas"], ["10 minutes to pandas", "https://pandas.pydata.org/docs/user_guide/10min.html"]] },
-    { "phase": "py", "title": "Pandas II: groupby, pivot, merge",
-      "tasks": ["Learn: groupby + agg (named aggregations)", "Learn: pivot_table, melt", "Learn: merge/join/concat (compare to SQL joins)", "Code: rewrite 3 of your SQL solutions in pandas"],
-      "links": [["pandas groupby guide", "https://pandas.pydata.org/docs/user_guide/groupby.html"], ["pandas merge guide", "https://pandas.pydata.org/docs/user_guide/merging.html"]] },
-    { "phase": "py", "title": "Data cleaning",
-      "tasks": ["Learn: missing values (isna, fillna, dropna)", "Learn: dtypes, to_datetime, duplicates, .str methods", "Learn: spotting outliers (IQR, z-score)", "Code: clean a messy Kaggle dataset"],
-      "links": [["Kaggle Data Cleaning", "https://www.kaggle.com/learn/data-cleaning"]] },
-    { "phase": "py", "title": "Mini project: end-to-end analysis",
-      "tasks": ["Pick a Kaggle dataset and write 5 business questions", "Clean → analyze → summarize findings in a Colab notebook", "Save the notebook to GitHub", "Rate Python confidence (goal 7/10)"],
-      "links": [["Kaggle datasets", "https://www.kaggle.com/datasets"]] },
-
-    { "phase": "pyx", "title": "Time series in pandas",
-      "tasks": ["Learn: DatetimeIndex, resample, rolling windows", "Learn: shift/pct_change (like SQL LAG)", "Code: daily → weekly/monthly aggregates on a price dataset", "Write 3 takeaways in notes"],
-      "links": [["pandas time series", "https://pandas.pydata.org/docs/user_guide/timeseries.html"]] },
-    { "phase": "pyx", "title": "Visualization: matplotlib & seaborn",
-      "tasks": ["Learn: line, bar, histogram, scatter in matplotlib", "Learn: seaborn for distributions and categories", "Code: 4 charts from your time-series notebook", "Write 3 takeaways in notes"],
-      "links": [["Kaggle Data Visualization", "https://www.kaggle.com/learn/data-visualization"]] },
-    { "phase": "pyx", "title": "Project: trading data analysis (part 1)",
-      "tasks": ["Pull daily prices for 5 tickers into a DataFrame", "Compute returns, moving averages, volatility", "Plot the results", "Commit notebook to GitHub"],
-      "links": [["yfinance", "https://pypi.org/project/yfinance/"]] },
-    { "phase": "pyx", "title": "Project: trading data analysis (part 2)",
-      "tasks": ["Add a simple signal (e.g. MA crossover) and backtest it", "Summarize results in markdown cells", "Write a README for the project", "Commit to GitHub"],
-      "links": [] },
-    { "phase": "pyx", "title": "Review week 5",
-      "tasks": ["Re-solve 3 SQL window-function problems without notes", "Re-do one pandas groupby exercise", "List weak spots", "Rate confidence"],
-      "links": [["DataLemur", "https://datalemur.com/questions"]] },
-
-    { "phase": "pyx", "title": "Statistics essentials",
-      "tasks": ["Learn: mean/median/variance, distributions (normal, binomial)", "Learn: central limit theorem, confidence intervals", "Code: simulate the CLT in NumPy", "Write 3 takeaways in notes"],
-      "links": [["Khan Academy statistics", "https://www.khanacademy.org/math/statistics-probability"]] },
-    { "phase": "pyx", "title": "Hypothesis testing",
-      "tasks": ["Learn: null/alternative, p-values, type I/II errors", "Learn: t-test, chi-square with scipy.stats", "Code: run both tests on a sample dataset", "Write 3 takeaways in notes"],
-      "links": [["scipy.stats", "https://docs.scipy.org/doc/scipy/reference/stats.html"]] },
-    { "phase": "pyx", "title": "A/B testing design",
-      "tasks": ["Learn: randomization, power, sample size, MDE", "Learn: pitfalls (peeking, novelty effect, multiple testing)", "Code: sample-size calculator in Python", "Write 3 takeaways in notes"],
-      "links": [["Evan Miller sample size", "https://www.evanmiller.org/ab-testing/sample-size.html"]] },
-    { "phase": "pyx", "title": "Product metrics",
-      "tasks": ["Learn: DAU/MAU, retention, conversion, churn, LTV", "Learn: choosing a north-star metric + guardrail metrics", "Practice: answer 2 product-sense questions out loud", "Write 3 takeaways in notes"],
-      "links": [] },
-    { "phase": "pyx", "title": "Case study: analyze an A/B test",
-      "tasks": ["Get a public A/B test dataset (Kaggle)", "Check randomization, compute lift + significance", "Write a 1-paragraph recommendation", "Commit notebook to GitHub"],
-      "links": [["Kaggle datasets", "https://www.kaggle.com/datasets?search=ab+test"]] },
-
-    { "phase": "pyx", "title": "ETL pipelines in Python",
-      "tasks": ["Learn: extract / transform / load, idempotency, incremental loads", "Code: a script that reads CSV → cleans → writes Parquet", "Add logging and basic error handling", "Write 3 takeaways in notes"],
-      "links": [] },
-    { "phase": "pyx", "title": "SQL from Python",
-      "tasks": ["Learn: sqlite3 and SQLAlchemy basics", "Learn: pandas.read_sql / to_sql", "Code: load your cleaned data into SQLite and query it", "Write 3 takeaways in notes"],
-      "links": [["SQLAlchemy tutorial", "https://docs.sqlalchemy.org/en/20/tutorial/"]] },
-    { "phase": "pyx", "title": "APIs & data ingestion",
-      "tasks": ["Learn: requests, JSON APIs, pagination, rate limits", "Code: pull data from a public API into a DataFrame", "Store it in SQLite", "Write 3 takeaways in notes"],
-      "links": [["requests docs", "https://requests.readthedocs.io/"]] },
-    { "phase": "pyx", "title": "Data quality checks",
-      "tasks": ["Learn: null / uniqueness / range / freshness checks", "Code: add assertions to your ETL script", "Learn: what dbt tests and Great Expectations do (concept)", "Write 3 takeaways in notes"],
-      "links": [["dbt data tests", "https://docs.getdbt.com/docs/build/data-tests"]] },
-    { "phase": "pyx", "title": "Orchestration: Airflow concepts",
-      "tasks": ["Learn: DAGs, tasks, operators, scheduling, backfills", "Sketch your ETL as an Airflow DAG (pseudo-code)", "Weekly review: explain your pipeline out loud in 2 minutes", "Rate confidence"],
-      "links": [["Airflow concepts", "https://airflow.apache.org/docs/apache-airflow/stable/core-concepts/index.html"]] },
-
-    { "phase": "pyx", "title": "Spark architecture",
-      "tasks": ["Learn: driver/executors, partitions, lazy evaluation", "Learn: transformations vs actions, shuffles", "Set up PySpark in Colab (pip install pyspark)", "Write 3 takeaways in notes"],
-      "links": [["PySpark quickstart", "https://spark.apache.org/docs/latest/api/python/getting_started/quickstart_df.html"]] },
-    { "phase": "pyx", "title": "PySpark DataFrames",
-      "tasks": ["Learn: select, filter, withColumn, groupBy/agg", "Code: redo your pandas mini project in PySpark", "Compare the APIs side by side", "Write 3 takeaways in notes"],
-      "links": [] },
-    { "phase": "pyx", "title": "PySpark joins & window functions",
-      "tasks": ["Learn: join types and broadcast joins", "Learn: Window.partitionBy().orderBy() with rank/lag", "Code: rewrite 2 SQL window problems in PySpark", "Write 3 takeaways in notes"],
-      "links": [] },
-    { "phase": "pyx", "title": "Performance & partitioning",
-      "tasks": ["Learn: data skew, repartition vs coalesce, caching", "Learn: partitioning on write (partitionBy)", "Code: compare run times with/without caching", "Write 3 takeaways in notes"],
-      "links": [["Spark tuning", "https://spark.apache.org/docs/latest/sql-performance-tuning.html"]] },
-    { "phase": "pyx", "title": "File formats & warehouses",
-      "tasks": ["Learn: CSV vs Parquet vs Avro, columnar storage", "Learn: data lake vs warehouse vs lakehouse", "Learn: BigQuery / Snowflake / Redshift at a high level", "Rate confidence"],
-      "links": [["BigQuery sandbox (free)", "https://cloud.google.com/bigquery/docs/sandbox"]] },
-
-    { "phase": "pyx", "title": "Portfolio project: design",
-      "tasks": ["Pick a project: API → pipeline → warehouse → dashboard", "Draw the architecture diagram", "Define tables (star schema) and metrics", "Create the GitHub repo with a README outline"],
-      "links": [] },
-    { "phase": "pyx", "title": "Portfolio project: ingestion",
-      "tasks": ["Build the extract step", "Store raw data (Parquet)", "Add logging + data quality checks", "Commit"],
-      "links": [] },
-    { "phase": "pyx", "title": "Portfolio project: transform",
-      "tasks": ["Build fact + dimension tables with SQL", "Write 3 analysis queries using window functions", "Add tests", "Commit"],
-      "links": [] },
-    { "phase": "pyx", "title": "Portfolio project: dashboard",
-      "tasks": ["Build charts (Streamlit, Looker Studio, or notebook)", "Write up 3 insights", "Screenshot for README", "Commit"],
-      "links": [["Streamlit", "https://streamlit.io/"], ["Looker Studio", "https://lookerstudio.google.com/"]] },
-    { "phase": "pyx", "title": "Portfolio project: polish",
-      "tasks": ["Finish the README (problem, architecture, how to run, results)", "Clean up code", "Pin the repo on your GitHub profile", "Add it to your resume"],
-      "links": [] },
-
-    { "phase": "pyx", "title": "Mock interview: SQL",
-      "tasks": ["3 hard SQL problems, 15 min each, timed", "Explain each solution out loud", "Review mistakes", "Rate SQL confidence"],
-      "links": [["DataLemur", "https://datalemur.com/questions?category=SQL"]] },
-    { "phase": "pyx", "title": "Mock interview: Python / pandas",
-      "tasks": ["2 Python problems + 1 pandas problem, timed", "Explain time/space complexity", "Review mistakes", "Rate Python confidence"],
-      "links": [["StrataScratch", "https://www.stratascratch.com/"]] },
-    { "phase": "pyx", "title": "Data pipeline system design",
-      "tasks": ["Learn: batch vs streaming, Kafka basics, lambda/kappa", "Practice: design a clickstream pipeline for a video app", "Cover scale, failure handling, data quality", "Write 3 takeaways in notes"],
-      "links": [] },
-    { "phase": "pyx", "title": "Behavioral prep",
-      "tasks": ["Write 6 STAR stories (conflict, failure, impact, ambiguity, leadership, deadline)", "Map them to Amazon Leadership Principles", "Practice 2 stories out loud", "Write 3 takeaways in notes"],
-      "links": [["Amazon Leadership Principles", "https://www.amazon.jobs/content/en/our-workplace/leadership-principles"]] },
-    { "phase": "pyx", "title": "Final mock + next steps",
-      "tasks": ["Full mock: 1 SQL + 1 Python + 1 product/metrics question", "Research 3 target teams / job postings", "Update resume + LinkedIn", "Rate overall confidence — you're ready to apply!"],
-      "links": [] }
+    {
+      "phase": "sql",
+      "title": "SELECT fundamentals & filtering",
+      "tasks": [
+        "Learn: SELECT, WHERE, AND/OR, IN, BETWEEN, LIKE",
+        "Learn: NULL handling (IS NULL, COALESCE), ORDER BY, LIMIT, DISTINCT",
+        "Practice: solve 3 easy problems",
+        "Write 3 takeaways in notes"
+      ],
+      "links": [
+        [
+          "Mode SQL basics",
+          "https://mode.com/sql-tutorial/introduction-to-sql"
+        ],
+        [
+          "LC 1757",
+          "https://leetcode.com/problems/recyclable-and-low-fat-products/"
+        ],
+        [
+          "LC 584",
+          "https://leetcode.com/problems/find-customer-referee/"
+        ],
+        [
+          "LC 595",
+          "https://leetcode.com/problems/big-countries/"
+        ],
+        [
+          "Mode: WHERE & operators",
+          "https://mode.com/sql-tutorial/sql-where"
+        ],
+        [
+          "Mode: IS NULL",
+          "https://mode.com/sql-tutorial/sql-is-null"
+        ],
+        [
+          "Mode: ORDER BY",
+          "https://mode.com/sql-tutorial/sql-order-by"
+        ],
+        [
+          "SQLBolt interactive lessons",
+          "https://sqlbolt.com/lesson/select_queries_introduction"
+        ]
+      ]
+    },
+    {
+      "phase": "sql",
+      "title": "Aggregations, GROUP BY, HAVING, CASE",
+      "tasks": [
+        "Learn: COUNT/SUM/AVG/MIN/MAX, COUNT(DISTINCT)",
+        "Learn: GROUP BY vs HAVING, CASE WHEN inside aggregates",
+        "Practice: solve 3 problems",
+        "Write 3 takeaways in notes"
+      ],
+      "links": [
+        [
+          "Mode aggregates",
+          "https://mode.com/sql-tutorial/sql-aggregate-functions"
+        ],
+        [
+          "LC 1741",
+          "https://leetcode.com/problems/find-total-time-spent-by-each-employee/"
+        ],
+        [
+          "LC 1693",
+          "https://leetcode.com/problems/daily-leads-and-partners/"
+        ],
+        [
+          "LC 596",
+          "https://leetcode.com/problems/classes-with-at-least-5-students/"
+        ],
+        [
+          "Mode: GROUP BY",
+          "https://mode.com/sql-tutorial/sql-group-by"
+        ],
+        [
+          "Mode: HAVING",
+          "https://mode.com/sql-tutorial/sql-having"
+        ],
+        [
+          "Mode: CASE",
+          "https://mode.com/sql-tutorial/sql-case"
+        ]
+      ]
+    },
+    {
+      "phase": "sql",
+      "title": "JOINs: inner, left, self, anti",
+      "tasks": [
+        "Learn: INNER vs LEFT vs FULL joins, join cardinality",
+        "Learn: self joins and anti joins (LEFT JOIN … IS NULL / NOT EXISTS)",
+        "Practice: solve 3 problems",
+        "Write 3 takeaways in notes"
+      ],
+      "links": [
+        [
+          "Mode joins",
+          "https://mode.com/sql-tutorial/sql-joins"
+        ],
+        [
+          "LC 175",
+          "https://leetcode.com/problems/combine-two-tables/"
+        ],
+        [
+          "LC 181",
+          "https://leetcode.com/problems/employees-earning-more-than-their-managers/"
+        ],
+        [
+          "LC 183",
+          "https://leetcode.com/problems/customers-who-never-order/"
+        ],
+        [
+          "Mode: LEFT JOIN",
+          "https://mode.com/sql-tutorial/sql-left-join"
+        ],
+        [
+          "SQLBolt: joins",
+          "https://sqlbolt.com/lesson/select_queries_with_joins"
+        ]
+      ]
+    },
+    {
+      "phase": "sql",
+      "title": "Subqueries & CTEs",
+      "tasks": [
+        "Learn: scalar, correlated and IN/EXISTS subqueries",
+        "Learn: WITH (CTEs), chaining CTEs, recursive CTE basics",
+        "Practice: solve 3 medium problems",
+        "Write 3 takeaways in notes"
+      ],
+      "links": [
+        [
+          "Mode subqueries",
+          "https://mode.com/sql-tutorial/sql-sub-queries"
+        ],
+        [
+          "LC 176",
+          "https://leetcode.com/problems/second-highest-salary/"
+        ],
+        [
+          "LC 184",
+          "https://leetcode.com/problems/department-highest-salary/"
+        ],
+        [
+          "LC 570",
+          "https://leetcode.com/problems/managers-with-at-least-5-direct-reports/"
+        ],
+        [
+          "PostgreSQL: WITH (CTEs)",
+          "https://www.postgresql.org/docs/current/queries-with.html"
+        ],
+        [
+          "PostgreSQL: subquery expressions",
+          "https://www.postgresql.org/docs/current/functions-subquery.html"
+        ]
+      ]
+    },
+    {
+      "phase": "sql",
+      "title": "Window functions I: ranking",
+      "tasks": [
+        "Learn: OVER, PARTITION BY, ORDER BY in windows",
+        "Learn: ROW_NUMBER vs RANK vs DENSE_RANK, top-N per group",
+        "Practice: solve 2 problems (one hard)",
+        "Weekly review: re-solve one problem from Day 1–4 without notes"
+      ],
+      "links": [
+        [
+          "Mode window functions",
+          "https://mode.com/sql-tutorial/sql-window-functions"
+        ],
+        [
+          "LC 178",
+          "https://leetcode.com/problems/rank-scores/"
+        ],
+        [
+          "LC 185",
+          "https://leetcode.com/problems/department-top-three-salaries/"
+        ],
+        [
+          "PostgreSQL: window tutorial",
+          "https://www.postgresql.org/docs/current/tutorial-window.html"
+        ],
+        [
+          "DataLemur: RANK vs ROW_NUMBER",
+          "https://datalemur.com/sql-tutorial/sql-rank-dense_rank-row_number-window-function"
+        ]
+      ]
+    },
+    {
+      "phase": "sql",
+      "title": "Window functions II: LAG/LEAD & running totals",
+      "tasks": [
+        "Learn: LAG/LEAD, day-over-day change",
+        "Learn: running totals and moving averages (ROWS BETWEEN)",
+        "Practice: solve 3 problems",
+        "Write 3 takeaways in notes"
+      ],
+      "links": [
+        [
+          "LC 180",
+          "https://leetcode.com/problems/consecutive-numbers/"
+        ],
+        [
+          "LC 197",
+          "https://leetcode.com/problems/rising-temperature/"
+        ],
+        [
+          "LC 1321",
+          "https://leetcode.com/problems/restaurant-growth/"
+        ],
+        [
+          "Mode: window functions (LAG/LEAD)",
+          "https://mode.com/sql-tutorial/sql-window-functions"
+        ],
+        [
+          "PostgreSQL: window functions",
+          "https://www.postgresql.org/docs/current/functions-window.html"
+        ]
+      ]
+    },
+    {
+      "phase": "sql",
+      "title": "Dates, strings, retention & cohorts",
+      "tasks": [
+        "Learn: date functions (DATE_TRUNC, DATEDIFF, intervals), string functions",
+        "Learn: retention / cohort query pattern (first-activity date + self join)",
+        "Practice: solve 2 problems",
+        "Write 3 takeaways in notes"
+      ],
+      "links": [
+        [
+          "LC 550",
+          "https://leetcode.com/problems/game-play-analysis-iv/"
+        ],
+        [
+          "LC 1141",
+          "https://leetcode.com/problems/user-activity-for-the-past-30-days-i/"
+        ],
+        [
+          "DataLemur SQL questions",
+          "https://datalemur.com/questions?category=SQL"
+        ],
+        [
+          "PostgreSQL: date/time functions",
+          "https://www.postgresql.org/docs/current/functions-datetime.html"
+        ],
+        [
+          "PostgreSQL: string functions",
+          "https://www.postgresql.org/docs/current/functions-string.html"
+        ]
+      ]
+    },
+    {
+      "phase": "sql",
+      "title": "Query optimization",
+      "tasks": [
+        "Learn: how indexes work (B-tree), when they are / aren't used",
+        "Learn: read an EXPLAIN plan; filter early, avoid SELECT *, sargable predicates",
+        "Practice: rewrite 2 of your earlier solutions to be faster / cleaner",
+        "Write 3 takeaways in notes"
+      ],
+      "links": [
+        [
+          "Use The Index, Luke",
+          "https://use-the-index-luke.com/"
+        ],
+        [
+          "Mode performance tuning",
+          "https://mode.com/sql-tutorial/sql-performance-tuning"
+        ],
+        [
+          "PostgreSQL: using EXPLAIN",
+          "https://www.postgresql.org/docs/current/using-explain.html"
+        ]
+      ]
+    },
+    {
+      "phase": "sql",
+      "title": "Data modeling: star schema & SCDs",
+      "tasks": [
+        "Learn: facts vs dimensions, star vs snowflake, grain",
+        "Learn: normalization (1NF–3NF) and SCD Type 1 vs Type 2",
+        "Practice: design a star schema for an e-commerce store (orders, customers, products)",
+        "Write 3 takeaways in notes"
+      ],
+      "links": [
+        [
+          "Kimball techniques",
+          "https://www.kimballgroup.com/data-warehouse-business-intelligence-resources/kimball-techniques/dimensional-modeling-techniques/"
+        ],
+        [
+          "Star schema",
+          "https://en.wikipedia.org/wiki/Star_schema"
+        ],
+        [
+          "Slowly changing dimensions",
+          "https://en.wikipedia.org/wiki/Slowly_changing_dimension"
+        ],
+        [
+          "Database normalization",
+          "https://en.wikipedia.org/wiki/Database_normalization"
+        ]
+      ]
+    },
+    {
+      "phase": "sql",
+      "title": "SQL interview patterns + timed mock",
+      "tasks": [
+        "Review: top-N per group, gaps & islands, funnels, dedup with ROW_NUMBER",
+        "Mock: 3 FAANG problems, 15 min each, timed",
+        "Weekly review: list weak spots to revisit",
+        "Rate SQL confidence (goal 8/10)"
+      ],
+      "links": [
+        [
+          "DataLemur FAANG SQL",
+          "https://datalemur.com/questions?category=SQL"
+        ],
+        [
+          "LeetCode SQL 50",
+          "https://leetcode.com/studyplan/top-sql-50/"
+        ],
+        [
+          "LC 601 (gaps & islands)",
+          "https://leetcode.com/problems/human-traffic-of-stadium/"
+        ],
+        [
+          "LC 262 (funnel-style rates)",
+          "https://leetcode.com/problems/trips-and-users/"
+        ]
+      ]
+    },
+    {
+      "phase": "py",
+      "title": "Python fundamentals: types & collections",
+      "tasks": [
+        "Learn: ints/floats/strings, f-strings, slicing",
+        "Learn: lists, tuples, dicts, sets and comprehensions",
+        "Code: 5 small exercises in Colab",
+        "Write 3 takeaways in notes"
+      ],
+      "links": [
+        [
+          "Google Colab",
+          "https://colab.research.google.com/"
+        ],
+        [
+          "HackerRank Python",
+          "https://www.hackerrank.com/domains/python"
+        ],
+        [
+          "Python tutorial: intro",
+          "https://docs.python.org/3/tutorial/introduction.html"
+        ],
+        [
+          "Python tutorial: data structures",
+          "https://docs.python.org/3/tutorial/datastructures.html"
+        ]
+      ]
+    },
+    {
+      "phase": "py",
+      "title": "Control flow, functions, errors",
+      "tasks": [
+        "Learn: if/for/while, enumerate, zip",
+        "Learn: functions, default args, *args/**kwargs, lambda",
+        "Learn: try/except/finally, raising errors",
+        "Code: 5 exercises in Colab"
+      ],
+      "links": [
+        [
+          "Python tutorial: control flow",
+          "https://docs.python.org/3/tutorial/controlflow.html"
+        ],
+        [
+          "Python tutorial: errors & exceptions",
+          "https://docs.python.org/3/tutorial/errors.html"
+        ],
+        [
+          "HackerRank Python",
+          "https://www.hackerrank.com/domains/python"
+        ],
+        [
+          "Google Colab",
+          "https://colab.research.google.com/"
+        ]
+      ]
+    },
+    {
+      "phase": "py",
+      "title": "Interview-style problem solving",
+      "tasks": [
+        "Learn: hashing with dict/Counter/defaultdict",
+        "Learn: two pointers, sorting with key=, sliding window",
+        "Practice: solve 3 easy LeetCode array/string problems",
+        "Write 3 takeaways in notes"
+      ],
+      "links": [
+        [
+          "LC 1 Two Sum",
+          "https://leetcode.com/problems/two-sum/"
+        ],
+        [
+          "LC 242 Valid Anagram",
+          "https://leetcode.com/problems/valid-anagram/"
+        ],
+        [
+          "LC 347 Top K Frequent",
+          "https://leetcode.com/problems/top-k-frequent-elements/"
+        ],
+        [
+          "collections (Counter, defaultdict)",
+          "https://docs.python.org/3/library/collections.html"
+        ],
+        [
+          "Sorting HOWTO (key=)",
+          "https://docs.python.org/3/howto/sorting.html"
+        ],
+        [
+          "LC 3 (sliding window)",
+          "https://leetcode.com/problems/longest-substring-without-repeating-characters/"
+        ]
+      ]
+    },
+    {
+      "phase": "py",
+      "title": "Files, JSON/CSV, modules, classes",
+      "tasks": [
+        "Learn: reading/writing files, csv and json modules",
+        "Learn: imports, modules, virtual envs (concept)",
+        "Learn: classes and @dataclass",
+        "Code: parse a JSON file into a list of dataclasses"
+      ],
+      "links": [
+        [
+          "Python tutorial: classes",
+          "https://docs.python.org/3/tutorial/classes.html"
+        ],
+        [
+          "Python: reading & writing files",
+          "https://docs.python.org/3/tutorial/inputoutput.html"
+        ],
+        [
+          "csv module",
+          "https://docs.python.org/3/library/csv.html"
+        ],
+        [
+          "json module",
+          "https://docs.python.org/3/library/json.html"
+        ],
+        [
+          "Python: modules",
+          "https://docs.python.org/3/tutorial/modules.html"
+        ],
+        [
+          "dataclasses",
+          "https://docs.python.org/3/library/dataclasses.html"
+        ]
+      ]
+    },
+    {
+      "phase": "py",
+      "title": "NumPy I: arrays & broadcasting",
+      "tasks": [
+        "Learn: ndarray, dtypes, shape, reshape",
+        "Learn: indexing, boolean masks, broadcasting",
+        "Code: 10 NumPy exercises in Colab",
+        "Weekly review: re-do one Python problem from this week"
+      ],
+      "links": [
+        [
+          "NumPy absolute beginners",
+          "https://numpy.org/doc/stable/user/absolute_beginners.html"
+        ],
+        [
+          "NumPy: indexing",
+          "https://numpy.org/doc/stable/user/basics.indexing.html"
+        ],
+        [
+          "NumPy: broadcasting",
+          "https://numpy.org/doc/stable/user/basics.broadcasting.html"
+        ],
+        [
+          "Google Colab",
+          "https://colab.research.google.com/"
+        ]
+      ]
+    },
+    {
+      "phase": "py",
+      "title": "NumPy II: vectorization & aggregation",
+      "tasks": [
+        "Learn: vectorized ops vs loops (time both)",
+        "Learn: sum/mean/std along axes, argsort, where",
+        "Learn: np.random and basic linear algebra",
+        "Code: 10 NumPy exercises in Colab"
+      ],
+      "links": [
+        [
+          "NumPy user guide",
+          "https://numpy.org/doc/stable/user/index.html"
+        ],
+        [
+          "NumPy: random",
+          "https://numpy.org/doc/stable/reference/random/index.html"
+        ],
+        [
+          "NumPy: linear algebra",
+          "https://numpy.org/doc/stable/reference/routines.linalg.html"
+        ]
+      ]
+    },
+    {
+      "phase": "py",
+      "title": "Pandas I: DataFrames, selecting, filtering",
+      "tasks": [
+        "Learn: Series vs DataFrame, read_csv, head/info/describe",
+        "Learn: loc vs iloc, boolean filtering, sort_values",
+        "Code: load a Kaggle dataset and answer 5 questions",
+        "Write 3 takeaways in notes"
+      ],
+      "links": [
+        [
+          "Kaggle Pandas course",
+          "https://www.kaggle.com/learn/pandas"
+        ],
+        [
+          "10 minutes to pandas",
+          "https://pandas.pydata.org/docs/user_guide/10min.html"
+        ],
+        [
+          "pandas: indexing & selecting",
+          "https://pandas.pydata.org/docs/user_guide/indexing.html"
+        ]
+      ]
+    },
+    {
+      "phase": "py",
+      "title": "Pandas II: groupby, pivot, merge",
+      "tasks": [
+        "Learn: groupby + agg (named aggregations)",
+        "Learn: pivot_table, melt",
+        "Learn: merge/join/concat (compare to SQL joins)",
+        "Code: rewrite 3 of your SQL solutions in pandas"
+      ],
+      "links": [
+        [
+          "pandas groupby guide",
+          "https://pandas.pydata.org/docs/user_guide/groupby.html"
+        ],
+        [
+          "pandas merge guide",
+          "https://pandas.pydata.org/docs/user_guide/merging.html"
+        ],
+        [
+          "pandas: pivot & melt",
+          "https://pandas.pydata.org/docs/user_guide/reshaping.html"
+        ]
+      ]
+    },
+    {
+      "phase": "py",
+      "title": "Data cleaning",
+      "tasks": [
+        "Learn: missing values (isna, fillna, dropna)",
+        "Learn: dtypes, to_datetime, duplicates, .str methods",
+        "Learn: spotting outliers (IQR, z-score)",
+        "Code: clean a messy Kaggle dataset"
+      ],
+      "links": [
+        [
+          "Kaggle Data Cleaning",
+          "https://www.kaggle.com/learn/data-cleaning"
+        ],
+        [
+          "pandas: missing data",
+          "https://pandas.pydata.org/docs/user_guide/missing_data.html"
+        ],
+        [
+          "pandas: text (.str)",
+          "https://pandas.pydata.org/docs/user_guide/text.html"
+        ],
+        [
+          "pandas: to_datetime",
+          "https://pandas.pydata.org/docs/reference/api/pandas.to_datetime.html"
+        ]
+      ]
+    },
+    {
+      "phase": "py",
+      "title": "Mini project: end-to-end analysis",
+      "tasks": [
+        "Pick a Kaggle dataset and write 5 business questions",
+        "Clean → analyze → summarize findings in a Colab notebook",
+        "Save the notebook to GitHub",
+        "Rate Python confidence (goal 7/10)"
+      ],
+      "links": [
+        [
+          "Kaggle datasets",
+          "https://www.kaggle.com/datasets"
+        ],
+        [
+          "Google Colab",
+          "https://colab.research.google.com/"
+        ],
+        [
+          "Kaggle notebooks (examples)",
+          "https://www.kaggle.com/code"
+        ]
+      ]
+    },
+    {
+      "phase": "pyx",
+      "title": "Time series in pandas",
+      "tasks": [
+        "Learn: DatetimeIndex, resample, rolling windows",
+        "Learn: shift/pct_change (like SQL LAG)",
+        "Code: daily → weekly/monthly aggregates on a price dataset",
+        "Write 3 takeaways in notes"
+      ],
+      "links": [
+        [
+          "pandas time series",
+          "https://pandas.pydata.org/docs/user_guide/timeseries.html"
+        ],
+        [
+          "pandas: rolling windows",
+          "https://pandas.pydata.org/docs/user_guide/window.html"
+        ],
+        [
+          "pandas: pct_change",
+          "https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.pct_change.html"
+        ]
+      ]
+    },
+    {
+      "phase": "pyx",
+      "title": "Visualization: matplotlib & seaborn",
+      "tasks": [
+        "Learn: line, bar, histogram, scatter in matplotlib",
+        "Learn: seaborn for distributions and categories",
+        "Code: 4 charts from your time-series notebook",
+        "Write 3 takeaways in notes"
+      ],
+      "links": [
+        [
+          "Kaggle Data Visualization",
+          "https://www.kaggle.com/learn/data-visualization"
+        ],
+        [
+          "Matplotlib quick start",
+          "https://matplotlib.org/stable/users/explain/quick_start.html"
+        ],
+        [
+          "seaborn tutorial",
+          "https://seaborn.pydata.org/tutorial.html"
+        ]
+      ]
+    },
+    {
+      "phase": "pyx",
+      "title": "Project: trading data analysis (part 1)",
+      "tasks": [
+        "Pull daily prices for 5 tickers into a DataFrame",
+        "Compute returns, moving averages, volatility",
+        "Plot the results",
+        "Commit notebook to GitHub"
+      ],
+      "links": [
+        [
+          "yfinance",
+          "https://pypi.org/project/yfinance/"
+        ],
+        [
+          "pandas: rolling windows",
+          "https://pandas.pydata.org/docs/user_guide/window.html"
+        ],
+        [
+          "Google Colab",
+          "https://colab.research.google.com/"
+        ]
+      ]
+    },
+    {
+      "phase": "pyx",
+      "title": "Project: trading data analysis (part 2)",
+      "tasks": [
+        "Add a simple signal (e.g. MA crossover) and backtest it",
+        "Summarize results in markdown cells",
+        "Write a README for the project",
+        "Commit to GitHub"
+      ],
+      "links": [
+        [
+          "Moving-average crossover",
+          "https://www.investopedia.com/terms/c/crossover.asp"
+        ],
+        [
+          "Markdown guide (for README)",
+          "https://www.markdownguide.org/basic-syntax/"
+        ],
+        [
+          "pandas: shift",
+          "https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.shift.html"
+        ]
+      ]
+    },
+    {
+      "phase": "pyx",
+      "title": "Review week 5",
+      "tasks": [
+        "Re-solve 3 SQL window-function problems without notes",
+        "Re-do one pandas groupby exercise",
+        "List weak spots",
+        "Rate confidence"
+      ],
+      "links": [
+        [
+          "DataLemur",
+          "https://datalemur.com/questions"
+        ],
+        [
+          "LC 185 (window review)",
+          "https://leetcode.com/problems/department-top-three-salaries/"
+        ],
+        [
+          "LC 180 (window review)",
+          "https://leetcode.com/problems/consecutive-numbers/"
+        ],
+        [
+          "pandas: groupby",
+          "https://pandas.pydata.org/docs/user_guide/groupby.html"
+        ]
+      ]
+    },
+    {
+      "phase": "pyx",
+      "title": "Statistics essentials",
+      "tasks": [
+        "Learn: mean/median/variance, distributions (normal, binomial)",
+        "Learn: central limit theorem, confidence intervals",
+        "Code: simulate the CLT in NumPy",
+        "Write 3 takeaways in notes"
+      ],
+      "links": [
+        [
+          "Khan Academy statistics",
+          "https://www.khanacademy.org/math/statistics-probability"
+        ],
+        [
+          "Central limit theorem",
+          "https://en.wikipedia.org/wiki/Central_limit_theorem"
+        ],
+        [
+          "NumPy: random",
+          "https://numpy.org/doc/stable/reference/random/index.html"
+        ]
+      ]
+    },
+    {
+      "phase": "pyx",
+      "title": "Hypothesis testing",
+      "tasks": [
+        "Learn: null/alternative, p-values, type I/II errors",
+        "Learn: t-test, chi-square with scipy.stats",
+        "Code: run both tests on a sample dataset",
+        "Write 3 takeaways in notes"
+      ],
+      "links": [
+        [
+          "scipy.stats",
+          "https://docs.scipy.org/doc/scipy/reference/stats.html"
+        ],
+        [
+          "scipy: t-test",
+          "https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.ttest_ind.html"
+        ],
+        [
+          "scipy: chi-square",
+          "https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.chi2_contingency.html"
+        ],
+        [
+          "p-value explained",
+          "https://en.wikipedia.org/wiki/P-value"
+        ]
+      ]
+    },
+    {
+      "phase": "pyx",
+      "title": "A/B testing design",
+      "tasks": [
+        "Learn: randomization, power, sample size, MDE",
+        "Learn: pitfalls (peeking, novelty effect, multiple testing)",
+        "Code: sample-size calculator in Python",
+        "Write 3 takeaways in notes"
+      ],
+      "links": [
+        [
+          "Evan Miller sample size",
+          "https://www.evanmiller.org/ab-testing/sample-size.html"
+        ],
+        [
+          "Udacity A/B Testing (free)",
+          "https://www.udacity.com/course/ab-testing--ud257"
+        ],
+        [
+          "statsmodels: power analysis",
+          "https://www.statsmodels.org/stable/generated/statsmodels.stats.power.NormalIndPower.html"
+        ]
+      ]
+    },
+    {
+      "phase": "pyx",
+      "title": "Product metrics",
+      "tasks": [
+        "Learn: DAU/MAU, retention, conversion, churn, LTV",
+        "Learn: choosing a north-star metric + guardrail metrics",
+        "Practice: answer 2 product-sense questions out loud",
+        "Write 3 takeaways in notes"
+      ],
+      "links": [
+        [
+          "Retention rate",
+          "https://en.wikipedia.org/wiki/Customer_retention"
+        ],
+        [
+          "Customer lifetime value",
+          "https://en.wikipedia.org/wiki/Customer_lifetime_value"
+        ],
+        [
+          "Churn rate",
+          "https://en.wikipedia.org/wiki/Churn_rate"
+        ],
+        [
+          "DataLemur product questions",
+          "https://datalemur.com/questions"
+        ]
+      ]
+    },
+    {
+      "phase": "pyx",
+      "title": "Case study: analyze an A/B test",
+      "tasks": [
+        "Get a public A/B test dataset (Kaggle)",
+        "Check randomization, compute lift + significance",
+        "Write a 1-paragraph recommendation",
+        "Commit notebook to GitHub"
+      ],
+      "links": [
+        [
+          "Kaggle datasets",
+          "https://www.kaggle.com/datasets?search=ab+test"
+        ],
+        [
+          "statsmodels: proportions z-test",
+          "https://www.statsmodels.org/stable/generated/statsmodels.stats.proportion.proportions_ztest.html"
+        ]
+      ]
+    },
+    {
+      "phase": "pyx",
+      "title": "ETL pipelines in Python",
+      "tasks": [
+        "Learn: extract / transform / load, idempotency, incremental loads",
+        "Code: a script that reads CSV → cleans → writes Parquet",
+        "Add logging and basic error handling",
+        "Write 3 takeaways in notes"
+      ],
+      "links": [
+        [
+          "Extract, transform, load",
+          "https://en.wikipedia.org/wiki/Extract,_transform,_load"
+        ],
+        [
+          "pandas: to_parquet",
+          "https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.to_parquet.html"
+        ],
+        [
+          "Python logging HOWTO",
+          "https://docs.python.org/3/howto/logging.html"
+        ]
+      ]
+    },
+    {
+      "phase": "pyx",
+      "title": "SQL from Python",
+      "tasks": [
+        "Learn: sqlite3 and SQLAlchemy basics",
+        "Learn: pandas.read_sql / to_sql",
+        "Code: load your cleaned data into SQLite and query it",
+        "Write 3 takeaways in notes"
+      ],
+      "links": [
+        [
+          "SQLAlchemy tutorial",
+          "https://docs.sqlalchemy.org/en/20/tutorial/"
+        ],
+        [
+          "sqlite3 module",
+          "https://docs.python.org/3/library/sqlite3.html"
+        ],
+        [
+          "pandas: read_sql",
+          "https://pandas.pydata.org/docs/reference/api/pandas.read_sql.html"
+        ]
+      ]
+    },
+    {
+      "phase": "pyx",
+      "title": "APIs & data ingestion",
+      "tasks": [
+        "Learn: requests, JSON APIs, pagination, rate limits",
+        "Code: pull data from a public API into a DataFrame",
+        "Store it in SQLite",
+        "Write 3 takeaways in notes"
+      ],
+      "links": [
+        [
+          "requests docs",
+          "https://requests.readthedocs.io/"
+        ],
+        [
+          "Free public APIs list",
+          "https://github.com/public-apis/public-apis"
+        ]
+      ]
+    },
+    {
+      "phase": "pyx",
+      "title": "Data quality checks",
+      "tasks": [
+        "Learn: null / uniqueness / range / freshness checks",
+        "Code: add assertions to your ETL script",
+        "Learn: what dbt tests and Great Expectations do (concept)",
+        "Write 3 takeaways in notes"
+      ],
+      "links": [
+        [
+          "dbt data tests",
+          "https://docs.getdbt.com/docs/build/data-tests"
+        ],
+        [
+          "Great Expectations docs",
+          "https://docs.greatexpectations.io/docs/home/"
+        ]
+      ]
+    },
+    {
+      "phase": "pyx",
+      "title": "Orchestration: Airflow concepts",
+      "tasks": [
+        "Learn: DAGs, tasks, operators, scheduling, backfills",
+        "Sketch your ETL as an Airflow DAG (pseudo-code)",
+        "Weekly review: explain your pipeline out loud in 2 minutes",
+        "Rate confidence"
+      ],
+      "links": [
+        [
+          "Airflow concepts",
+          "https://airflow.apache.org/docs/apache-airflow/stable/core-concepts/index.html"
+        ],
+        [
+          "Airflow tutorial",
+          "https://airflow.apache.org/docs/apache-airflow/stable/tutorial/fundamentals.html"
+        ]
+      ]
+    },
+    {
+      "phase": "pyx",
+      "title": "Spark architecture",
+      "tasks": [
+        "Learn: driver/executors, partitions, lazy evaluation",
+        "Learn: transformations vs actions, shuffles",
+        "Set up PySpark in Colab (pip install pyspark)",
+        "Write 3 takeaways in notes"
+      ],
+      "links": [
+        [
+          "PySpark quickstart",
+          "https://spark.apache.org/docs/latest/api/python/getting_started/quickstart_df.html"
+        ],
+        [
+          "Spark cluster overview",
+          "https://spark.apache.org/docs/latest/cluster-overview.html"
+        ],
+        [
+          "Spark SQL & DataFrames guide",
+          "https://spark.apache.org/docs/latest/sql-programming-guide.html"
+        ]
+      ]
+    },
+    {
+      "phase": "pyx",
+      "title": "PySpark DataFrames",
+      "tasks": [
+        "Learn: select, filter, withColumn, groupBy/agg",
+        "Code: redo your pandas mini project in PySpark",
+        "Compare the APIs side by side",
+        "Write 3 takeaways in notes"
+      ],
+      "links": [
+        [
+          "PySpark DataFrame quickstart",
+          "https://spark.apache.org/docs/latest/api/python/getting_started/quickstart_df.html"
+        ],
+        [
+          "PySpark API reference",
+          "https://spark.apache.org/docs/latest/api/python/reference/pyspark.sql/index.html"
+        ]
+      ]
+    },
+    {
+      "phase": "pyx",
+      "title": "PySpark joins & window functions",
+      "tasks": [
+        "Learn: join types and broadcast joins",
+        "Learn: Window.partitionBy().orderBy() with rank/lag",
+        "Code: rewrite 2 SQL window problems in PySpark",
+        "Write 3 takeaways in notes"
+      ],
+      "links": [
+        [
+          "PySpark Window",
+          "https://spark.apache.org/docs/latest/api/python/reference/pyspark.sql/api/pyspark.sql.Window.html"
+        ],
+        [
+          "PySpark join",
+          "https://spark.apache.org/docs/latest/api/python/reference/pyspark.sql/api/pyspark.sql.DataFrame.join.html"
+        ],
+        [
+          "Spark join hints (broadcast)",
+          "https://spark.apache.org/docs/latest/sql-ref-syntax-qry-select-hints.html"
+        ]
+      ]
+    },
+    {
+      "phase": "pyx",
+      "title": "Performance & partitioning",
+      "tasks": [
+        "Learn: data skew, repartition vs coalesce, caching",
+        "Learn: partitioning on write (partitionBy)",
+        "Code: compare run times with/without caching",
+        "Write 3 takeaways in notes"
+      ],
+      "links": [
+        [
+          "Spark tuning",
+          "https://spark.apache.org/docs/latest/sql-performance-tuning.html"
+        ],
+        [
+          "Spark caching & persistence",
+          "https://spark.apache.org/docs/latest/rdd-programming-guide.html#rdd-persistence"
+        ]
+      ]
+    },
+    {
+      "phase": "pyx",
+      "title": "File formats & warehouses",
+      "tasks": [
+        "Learn: CSV vs Parquet vs Avro, columnar storage",
+        "Learn: data lake vs warehouse vs lakehouse",
+        "Learn: BigQuery / Snowflake / Redshift at a high level",
+        "Rate confidence"
+      ],
+      "links": [
+        [
+          "BigQuery sandbox (free)",
+          "https://cloud.google.com/bigquery/docs/sandbox"
+        ],
+        [
+          "Apache Parquet",
+          "https://parquet.apache.org/docs/"
+        ],
+        [
+          "Data lakehouse",
+          "https://www.databricks.com/glossary/data-lakehouse"
+        ]
+      ]
+    },
+    {
+      "phase": "pyx",
+      "title": "Portfolio project: design",
+      "tasks": [
+        "Pick a project: API → pipeline → warehouse → dashboard",
+        "Draw the architecture diagram",
+        "Define tables (star schema) and metrics",
+        "Create the GitHub repo with a README outline"
+      ],
+      "links": [
+        [
+          "Data Engineering Zoomcamp (free)",
+          "https://github.com/DataTalksClub/data-engineering-zoomcamp"
+        ],
+        [
+          "draw.io (diagrams)",
+          "https://app.diagrams.net/"
+        ],
+        [
+          "Kimball techniques",
+          "https://www.kimballgroup.com/data-warehouse-business-intelligence-resources/kimball-techniques/dimensional-modeling-techniques/"
+        ]
+      ]
+    },
+    {
+      "phase": "pyx",
+      "title": "Portfolio project: ingestion",
+      "tasks": [
+        "Build the extract step",
+        "Store raw data (Parquet)",
+        "Add logging + data quality checks",
+        "Commit"
+      ],
+      "links": [
+        [
+          "requests docs",
+          "https://requests.readthedocs.io/"
+        ],
+        [
+          "pandas: to_parquet",
+          "https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.to_parquet.html"
+        ],
+        [
+          "Python logging HOWTO",
+          "https://docs.python.org/3/howto/logging.html"
+        ]
+      ]
+    },
+    {
+      "phase": "pyx",
+      "title": "Portfolio project: transform",
+      "tasks": [
+        "Build fact + dimension tables with SQL",
+        "Write 3 analysis queries using window functions",
+        "Add tests",
+        "Commit"
+      ],
+      "links": [
+        [
+          "dbt introduction",
+          "https://docs.getdbt.com/docs/introduction"
+        ],
+        [
+          "PostgreSQL: window functions",
+          "https://www.postgresql.org/docs/current/tutorial-window.html"
+        ]
+      ]
+    },
+    {
+      "phase": "pyx",
+      "title": "Portfolio project: dashboard",
+      "tasks": [
+        "Build charts (Streamlit, Looker Studio, or notebook)",
+        "Write up 3 insights",
+        "Screenshot for README",
+        "Commit"
+      ],
+      "links": [
+        [
+          "Streamlit",
+          "https://streamlit.io/"
+        ],
+        [
+          "Looker Studio",
+          "https://lookerstudio.google.com/"
+        ],
+        [
+          "Streamlit get started",
+          "https://docs.streamlit.io/get-started"
+        ]
+      ]
+    },
+    {
+      "phase": "pyx",
+      "title": "Portfolio project: polish",
+      "tasks": [
+        "Finish the README (problem, architecture, how to run, results)",
+        "Clean up code",
+        "Pin the repo on your GitHub profile",
+        "Add it to your resume"
+      ],
+      "links": [
+        [
+          "Make a README",
+          "https://www.makeareadme.com/"
+        ],
+        [
+          "Pin repos on your profile",
+          "https://docs.github.com/en/account-and-profile/setting-up-and-managing-your-github-profile/customizing-your-profile/pinning-items-to-your-profile"
+        ]
+      ]
+    },
+    {
+      "phase": "pyx",
+      "title": "Mock interview: SQL",
+      "tasks": [
+        "3 hard SQL problems, 15 min each, timed",
+        "Explain each solution out loud",
+        "Review mistakes",
+        "Rate SQL confidence"
+      ],
+      "links": [
+        [
+          "DataLemur",
+          "https://datalemur.com/questions?category=SQL"
+        ],
+        [
+          "LC 601",
+          "https://leetcode.com/problems/human-traffic-of-stadium/"
+        ],
+        [
+          "LC 262",
+          "https://leetcode.com/problems/trips-and-users/"
+        ],
+        [
+          "LeetCode SQL 50",
+          "https://leetcode.com/studyplan/top-sql-50/"
+        ]
+      ]
+    },
+    {
+      "phase": "pyx",
+      "title": "Mock interview: Python / pandas",
+      "tasks": [
+        "2 Python problems + 1 pandas problem, timed",
+        "Explain time/space complexity",
+        "Review mistakes",
+        "Rate Python confidence"
+      ],
+      "links": [
+        [
+          "StrataScratch",
+          "https://www.stratascratch.com/"
+        ],
+        [
+          "LeetCode Top Interview 150",
+          "https://leetcode.com/studyplan/top-interview-150/"
+        ],
+        [
+          "Big-O cheat sheet",
+          "https://www.bigocheatsheet.com/"
+        ]
+      ]
+    },
+    {
+      "phase": "pyx",
+      "title": "Data pipeline system design",
+      "tasks": [
+        "Learn: batch vs streaming, Kafka basics, lambda/kappa",
+        "Practice: design a clickstream pipeline for a video app",
+        "Cover scale, failure handling, data quality",
+        "Write 3 takeaways in notes"
+      ],
+      "links": [
+        [
+          "Apache Kafka intro",
+          "https://kafka.apache.org/intro"
+        ],
+        [
+          "Lambda architecture",
+          "https://en.wikipedia.org/wiki/Lambda_architecture"
+        ],
+        [
+          "Data Engineering Zoomcamp (streaming)",
+          "https://github.com/DataTalksClub/data-engineering-zoomcamp"
+        ]
+      ]
+    },
+    {
+      "phase": "pyx",
+      "title": "Behavioral prep",
+      "tasks": [
+        "Write 6 STAR stories (conflict, failure, impact, ambiguity, leadership, deadline)",
+        "Map them to Amazon Leadership Principles",
+        "Practice 2 stories out loud",
+        "Write 3 takeaways in notes"
+      ],
+      "links": [
+        [
+          "Amazon Leadership Principles",
+          "https://www.amazon.jobs/content/en/our-workplace/leadership-principles"
+        ],
+        [
+          "STAR method",
+          "https://en.wikipedia.org/wiki/Situation,_task,_action,_result"
+        ]
+      ]
+    },
+    {
+      "phase": "pyx",
+      "title": "Final mock + next steps",
+      "tasks": [
+        "Full mock: 1 SQL + 1 Python + 1 product/metrics question",
+        "Research 3 target teams / job postings",
+        "Update resume + LinkedIn",
+        "Rate overall confidence — you're ready to apply!"
+      ],
+      "links": [
+        [
+          "DataLemur",
+          "https://datalemur.com/questions"
+        ],
+        [
+          "Meta careers",
+          "https://www.metacareers.com/jobs/"
+        ],
+        [
+          "Amazon jobs: data engineer",
+          "https://www.amazon.jobs/en/search?base_query=data+engineer"
+        ],
+        [
+          "Google careers: data",
+          "https://www.google.com/about/careers/applications/jobs/results/?q=data%20engineer"
+        ],
+        [
+          "Netflix jobs",
+          "https://explore.jobs.netflix.net/careers"
+        ],
+        [
+          "Apple jobs",
+          "https://jobs.apple.com/en-us/search?search=data%20engineer"
+        ]
+      ]
+    }
   ]
 }

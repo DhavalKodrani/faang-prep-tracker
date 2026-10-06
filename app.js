@@ -2,7 +2,9 @@
 (() => {
   'use strict';
 
-  const LS = { cfg: 'fpt.cfg', data: 'fpt.progress', dirty: 'fpt.dirty', tab: 'fpt.tab' };
+  // Several trackers can live on one github.io origin (one per repo), so keys are namespaced by repo path.
+  const NS = (location.pathname.split('/').filter(Boolean)[0] || 'root').toLowerCase();
+  const LS = { cfg: `fpt.${NS}.cfg`, data: `fpt.${NS}.progress`, dirty: `fpt.${NS}.dirty`, tab: `fpt.${NS}.tab` };
   const DATA_FILE = 'progress.json';
   const $ = (s, el = document) => el.querySelector(s);
 
@@ -11,6 +13,19 @@
     set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch { /* private mode */ } },
     del(k) { try { localStorage.removeItem(k); } catch { /* ignore */ } },
   };
+
+  // One-time move of pre-namespacing keys, only if they belonged to this repo.
+  (function migrate() {
+    try {
+      const old = JSON.parse(localStorage.getItem('fpt.cfg') || 'null');
+      if (!old || (old.repo || '').toLowerCase() !== NS || localStorage.getItem(LS.cfg)) return;
+      ['cfg', 'progress', 'dirty', 'tab'].forEach((k) => {
+        const v = localStorage.getItem(`fpt.${k}`);
+        if (v != null) localStorage.setItem(`fpt.${NS}.${k}`, v);
+        localStorage.removeItem(`fpt.${k}`);
+      });
+    } catch { /* storage unavailable */ }
+  })();
 
   // ---------- config ----------
   function detectRepo() {
